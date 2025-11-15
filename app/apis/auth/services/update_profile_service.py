@@ -3,7 +3,7 @@ from typing import Union
 from apis.auth.utils import get_current_user, get_user_by_username
 from db.models import User
 from db.session import get_db
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from typing_extensions import Annotated
@@ -24,7 +24,13 @@ def update_profile(
     current_user: Annotated[User, Depends(get_current_user)],
     db: Session = Depends(get_db),
 ):
-    db_user = get_user_by_username(db, user.username)
+    if current_user.username != user.username:
+        raise HTTPException(
+            status_code = status.HTTP_403_FORBIDDEN,
+            detail="El username ingresado no coincide, revisa"
+        )
+    
+    db_user = get_user_by_username(db, user.username) #De Aquí la vulnerabilidad
 
     for var, value in user.dict().items():
         if value:
