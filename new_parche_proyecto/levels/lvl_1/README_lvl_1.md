@@ -1,17 +1,37 @@
 # Level 1: Broken Function Level Authorization
 
-# Ejecutar script para ver la vulnerabilidad 
+## 📌 Inicio Rápido
+
+### Prerequisitos
+Asegúrate de tener activado tu entorno virtual de Python:
+
+```bash
+source venv/bin/activate
+```
+
+### Comandos de Prueba
+
+#### 1️⃣ Ejecutar exploit para ver la vulnerabilidad
+```bash
 python3 new_parche_proyecto/levels/lvl_1/scripts/exploit_lvl1.py
+```
 
-# Hacer Parche
-sudo cp new_parche_proyecto/levels/lvl_1/fix/delete_menu_item_service.py app/apis/menu/services/delete_menu_item_service.py 
+#### 2️⃣ Aplicar parche de seguridad
+```bash
+sudo cp new_parche_proyecto/levels/lvl_1/fix/delete_menu_item_service.py app/apis/menu/services/delete_menu_item_service.py
+```
 
-# Ver el nuevo resultado del script 
+#### 3️⃣ Verificar que la vulnerabilidad fue corregida
+```bash
 python3 new_parche_proyecto/levels/lvl_1/scripts/exploit_lvl1.py
+```
 
-# Quitar Parche (Opcional)
-sudo cp new_parche_proyecto/levels/lvl_1/unpatch/delete_menu_item_service.py app/apis/menu/services/delete_menu_item_service.py 
+#### 4️⃣ Revertir parche (opcional)
+```bash
+sudo cp new_parche_proyecto/levels/lvl_1/unpatch/delete_menu_item_service.py app/apis/menu/services/delete_menu_item_service.py
+```
 
+---
 
 ## 📋 Clasificación OWASP
 **API5:2023 - Broken Function Level Authorization (BFLA)**
@@ -88,7 +108,6 @@ Authorization: Bearer {token}
 ```
 HTTP/1.1 204 No Content
 ```
-
 
 ## 🛡️ Cómo Solucionarlo
 
@@ -170,21 +189,4 @@ El script:
 - OWASP API Security Top 10 2023: API5:2023
 - CWE-285: Improper Authorization
 - CWE-863: Incorrect Authorization
-
-## 🎓 Comparación con Otras Vulnerabilidades
-
-### BFLA vs BOLA
-
-**BFLA (Function Level):**
-```
-Customer → DELETE /menu/8 → ❌ Debería requerir Employee/Chef
-```
-
-**BOLA (Object Level):**
-```
-User A → GET /profile?user_id=B → ❌ Debería solo ver su propio perfil
-```
-
-**Clave:** BFLA es sobre **qué funciones** puedes ejecutar, BOLA es sobre **qué objetos** puedes acceder.
-
 
