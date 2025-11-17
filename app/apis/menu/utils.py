@@ -5,8 +5,22 @@ from apis.menu import schemas
 from db.models import MenuItem
 from fastapi import HTTPException
 
+from urllib.parse import urlparse
+
+urlBaseImg = "restaurant.img.com"
 
 def _image_url_to_base64(image_url: str):
+    
+    
+    parseador_url = urlparse(image_url)
+    
+    if parseador_url.netloc != urlBaseImg:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Solo se admite imagenes con dominio: {urlBaseImg}"
+        )
+
+
     response = requests.get(image_url, stream=True)
     encoded_image = base64.b64encode(response.content).decode()
 

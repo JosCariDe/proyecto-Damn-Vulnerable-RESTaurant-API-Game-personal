@@ -61,7 +61,7 @@ async def apply_referral_code(
     if referrer is None:
         raise HTTPException(status_code=400, detail="Invalid referral code")
     
-    # ✅ FIX #1: VALIDAR QUE NO SEA SELF-REFERRAL
+    # FIX #1: VALIDAR QUE NO SEA SELF-REFERRAL
     # Previene que un usuario aplique su propio código
     if referrer.id == current_user.id:
         raise HTTPException(
@@ -69,7 +69,7 @@ async def apply_referral_code(
             detail="Cannot apply your own referral code"
         )
     
-    # ✅ FIX #2: VALIDAR USO ÚNICO POR USUARIO
+    # FIX #2: VALIDAR USO ÚNICO POR USUARIO
     # Verificar si el usuario ya aplicó ESTE código antes
     existing_coupon = (
         db.query(DiscountCoupon)
