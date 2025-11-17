@@ -24,11 +24,11 @@ def update_profile(
     current_user: Annotated[User, Depends(get_current_user)],
     db: Session = Depends(get_db),
 ):
-    #if current_user.username != user.username:
-    #    raise HTTPException(
-    #        status_code = status.HTTP_403_FORBIDDEN,
-    #        detail="El username ingresado no coincide, revisa"
-    #    )
+    if current_user.username != user.username:
+        raise HTTPException(
+            status_code = status.HTTP_403_FORBIDDEN,
+            detail="El username ingresado no coincide, revisa"
+        )
     
     db_user = get_user_by_username(db, user.username) #De Aquí la vulnerabilidad
 
