@@ -1,75 +1,76 @@
-# Damn Vulnerable RESTaurant API Game (DVRAPI)
+# New Parche Proyecto - Damn Vulnerable RESTaurant API Game
 
-Este repositorio contiene el código, documentación, pruebas, parches y extensiones para el proyecto de análisis y explotación de vulnerabilidades en la API DRMAPI. Está basado en la aplicación vulnerable de seguridad web y API construida en Python con FastAPI y PostgreSQL.
+Este proyecto contiene el desarrollo completo de parches y análisis de vulnerabilidades para la API vulnerable **Damn Vulnerable RESTaurant**, organizado por niveles de dificultad y tipo de vulnerabilidad según OWASP API Security Top 10.
 
----
+## Estructura del Proyecto
 
-## Estructura del Repositorio
+```
+new_parche_proyecto/levels
+├── nivel_1/          # API5:2023 - Broken Function Level Authorization (BFLA)
+├── nivel_2/          # API1:2023 - Broken Object Level Authorization (BOLA)
+├── nivel_3/          # API5:2023 - Broken Function Level Authorization (BFLA)
+├── nivel_4/          # API10:2023 - Unsafe Consumption of APIs
+├── codigo_referencia/ # API6:2023 - Unrestricted Access to Sensitive Business Flows y API2:2023 - Broken Authentication (Self-Referral)
+├── nuevo_nivel/      # API3:2023 - Broken Object Property Level Authorization
+└── README.md         # Este archivo
+```
 
-### docs/
-Contiene la documentación técnica del proyecto:
+## Objetivos del Proyecto
 
-- `INFORME_FINAL.md`: El informe completo del proyecto con análisis de vulnerabilidades, pruebas, soluciones y conclusiones.
-- `INSTALACION.md`: Guía paso a paso para instalar y configurar la API vulnerable en ambiente local utilizando Docker.
-- `VULNERABILIDADES.md`: Descripción detallada de cada vulnerabilidad analizada, incluyendo la nueva descubierta o creada para el proyecto.
-- `REFERENCIAS.md`: Bibliografía y fuentes utilizadas, formateadas en APA o IEEE.
+1. **Identificar** vulnerabilidades en una API REST real
+2. **Explotar** cada vulnerabilidad con pruebas de concepto (PoC)
+3. **Mitigar** aplicando parches de seguridad
+4. **Documentar** el proceso completo para aprendizaje
 
-### scripts/
-Scripts en Python para automatizar la explotación de vulnerabilidades y pruebas:
+## Inicio Rápido
 
-- `exploit_bola.py`: Script que demuestra la vulnerabilidad de Broken Object Level Authorization (BOLA).
-- `exploit_sqli.py`: Script para probar inyección SQL en endpoints vulnerables.
-- `exploit_auth.py`: Scripts para probar bypass o fallos en autenticación.
-- `exploit_custom.py`: Script para explotar la nueva vulnerabilidad descubierta o creada.
-- `requirements.txt`: Lista de dependencias necesarias para ejecutar los scripts Python.
+### Requisitos previos
+- Docker y Docker Compose instalados
+- Python 3.8+ (para scripts de prueba)
+- Burp Suite Community (opcional, para interceptar tráfico)
 
-### poc/
-Pruebas de concepto y evidencias obtenidas:
+### Instalación
+```bash
+# Clonar el repositorio
+git clone https://github.com/JosCariDe/proyecto-Damn-Vulnerable-RESTaurant-API-Game-personal.git
 
-- `postman_collection.json`: Colección configurada para Postman con pruebas y endpoints.
-- `burp_requests.txt`: Requests capturadas y preparadas para usar en Burp Suite.
-- `screenshots/`: Capturas de pantalla de resultados de pruebas, exploits y validaciones.
-  - Ejemplo: `bola_exploit.png`, `sqli_bypass.png`, etc.
+# Levantar la API vulnerable
+docker compose up -d
 
-### patches/
-Parchea el código para remediar las vulnerabilidades detectadas:
+# Acceder a la documentación
+# http://localhost:8091/docs
+```
 
-- `fix_bola.py`: Correcciones para arreglar Broken Object Level Authorization.
-- `fix_sqli.py`: Parches para proteger contra inyección SQL.
-- `fix_auth.py`: Mejoras y correcciones para el sistema de autenticación.
-- `fix_custom.py`: Corrección implementada para la vulnerabilidad nueva creada.
+## Niveles o Vulnerabilidades Disponibles
 
-### levels/
-Extensiones para agregar nuevos niveles o retos de vulnerabilidad al juego DVRAPI:
+| Vulnerabilidad | Vulnerabilidad | OWASP API Top 10 |
+|-------|---------------|------------|------------------|
+| 1 | Broken Function Level Authorization (BFLA)|  API5:2023 
+| 2 | Broken Object Level Authorization (BOLA) | API1:2023 |
+| 3 | Broken Function Level Authorization (BFLA) |   API5:2023 |
+| 4 | Unsafe Consumption of APIs |  API10:2023 |
+| codigo_referencia |  Unrestricted Access to Sensitive Business Flows y Broken Authentication (Self-Referral) | API6:2023 - API2:2023  |
+| new_lvl | Broken Object Property Level Authorization (vulnerabilidad inyectada) |  API3:2023 | 
 
-- `level_7_custom.py`: Nuevo nivel que introduce una vulnerabilidad de Mass Assignment para explorar.
-- `test_level_7.py`: Tests automatizados para validar la resolución del nivel 7.
-- `README_LEVEL7.md`: Documentación específica del nivel 7, cómo explotarlo y resolverlo.
+## Uso
 
----
+Cada nivel contiene:
+- `README.md` - Descripción de la vulnerabilidad o nivel
+- `exploit.py` - Script de explotación (PoC)
+- `patch.py` - Vulnerabilidad expuesta
+- `fix.py` - Solución propuesta
 
-## Cómo usar este repositorio
+### Workflow recomendado:
+1. Lee el README del nivel
+2. Explora la API vulnerable
+3. Intenta explotar la vulnerabilidad
+4. Revisa el exploit de ejemplo
+5. Aplica el parche sugerido (ejecutar los comando cp descrito al comienzo de cada README.md)
+6. Valida que la vulnerabilidad esté corregida
 
-1. Consulta la documentación en `docs/` para entender el contexto y el marco teórico.
-2. Configura el entorno según `docs/INSTALACION.md` para levantar la API vulnerable.
-3. Usa los scripts de `scripts/` para ejecutar ataques de prueba.
-4. Visualiza y valida las pruebas y capturas en `poc/`.
-5. Aplica los parches desde `patches/` para corregir las vulnerabilidades.
-6. Explora y resuelve nuevos retos usando los niveles en `levels/`.
-7. Consulta el informe final y referencias para completar el marco académico del proyecto.
+## Recursos
 
----
+- [OWASP API Security Project](https://owasp.org/API-Security/)
+- [Damn Vulnerable RESTaurant Original](https://github.com/theowni/Damn-Vulnerable-RESTaurant-API-Game)
+- [Burp Suite Documentation](https://portswigger.net/burp/documentation)
 
-## Licencia
-
-Este proyecto está bajo la licencia GPL v3 - vea el archivo [LICENSE](LICENSE) para más detalles.
-
----
-
-## Contacto
-
-Para dudas o sugerencias, favor de contactarme por correo o abrir un issue en este repositorio.
-
----
-
-¡Gracias por tu interés en seguridad de APIs y Happy Hacking!  
