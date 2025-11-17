@@ -15,22 +15,22 @@ source venv/bin/activate
 
 #### 1️⃣ Ejecutar exploit para ver la vulnerabilidad
 ```bash
-python3 new_parche_proyecto/levels/lvl_4/script/exploit_lvl4.py
+python3 new_parche_proyecto/levels/lvl_4/scripts/exploit_lvl4.py
 ```
 
 #### 2️⃣ Aplicar parche de seguridad
 ```bash
-sudo cp new_parche_proyecto/levels/lvl_4/fix/_image_url_to_base64.py app/apis/menu/utils/_image_url_to_base64.py
+sudo cp new_parche_proyecto/levels/lvl_4/fix/utils.py app/apis/menu/utils.py
 ```
 
 #### 3️⃣ Verificar que la vulnerabilidad fue corregida
 ```bash
-python3 new_parche_proyecto/levels/lvl_4/script/exploit_lvl4.py
+python3 new_parche_proyecto/levels/lvl_4/scripts/exploit_lvl4.py
 ```
 
 #### 4️⃣ Revertir parche (opcional)
 ```bash
-sudo cp new_parche_proyecto/levels/lvl_4/unpatch/_image_url_to_base64.py app/apis/menu/utils/_image_url_to_base64.py
+sudo cp new_parche_proyecto/levels/lvl_4/unpatch/utils.py app/apis/menu/utils.py
 ```
 
 ---
@@ -146,23 +146,13 @@ urlBaseImg = "restaurant.img.com" # Dominio permitido para imágenes
 def _image_url_to_base64(image_url: str):
     parseador_url = urlparse(image_url)
 
-    # Solución 1: Validar que el dominio de la URL de la imagen sea el permitido
+    # Validar que el dominio de la URL de la imagen sea el permitido
     if parseador_url.netloc != urlBaseImg:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Solo se admiten imágenes con dominio: {urlBaseImg}"
         )
     
-    # Solución 2 (Adicional): Podríamos añadir validación de Content-Type
-    # para asegurar que lo que se descarga es realmente una imagen.
-    response = requests.get(image_url, stream=True)
-    
-    # Ejemplo de validación de Content-Type (opcional pero recomendado)
-    # if not response.headers['Content-Type'].startswith('image/'):
-    #     raise HTTPException(
-    #         status_code=status.HTTP_400_BAD_REQUEST,
-    #         detail="La URL no apunta a un archivo de imagen válido."
-    #     )
     
     encoded_image = base64.b64encode(response.content).decode()
     return encoded_image

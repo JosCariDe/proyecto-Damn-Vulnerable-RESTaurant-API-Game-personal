@@ -14,7 +14,7 @@ source venv/bin/activate
 
 #### 1️⃣ Ejecutar exploit para ver la vulnerabilidad
 ```bash
-python3 new_parche_proyecto/levels/lvl_3/script/exploit_lvl3.py
+python3 new_parche_proyecto/levels/lvl_3/scripts/exploit_lvl3.py
 ```
 
 #### 2️⃣ Aplicar parche de seguridad
@@ -24,7 +24,7 @@ sudo cp new_parche_proyecto/levels/lvl_3/fix/update_user_role_service.py app/api
 
 #### 3️⃣ Verificar que la vulnerabilidad fue corregida
 ```bash
-python3 new_parche_proyecto/levels/lvl_3/script/exploit_lvl3.py
+python3 new_parche_proyecto/levels/lvl_3/scripts/exploit_lvl3.py
 ```
 
 #### 4️⃣ Revertir parche (opcional)

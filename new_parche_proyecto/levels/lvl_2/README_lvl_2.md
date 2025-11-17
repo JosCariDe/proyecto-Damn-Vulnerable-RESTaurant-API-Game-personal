@@ -14,22 +14,22 @@ source venv/bin/activate
 
 #### 1️⃣ Ejecutar exploit para ver la vulnerabilidad
 ```bash
-python3 new_parche_proyecto/levels/lvl_2/script/exploit_lvl2.py
+python3 new_parche_proyecto/levels/lvl_2/script/exploit_level2_idor.py
 ```
 
 #### 2️⃣ Aplicar parche de seguridad
 ```bash
-sudo cp new_parche_proyecto/levels/lvl_2/fix/update_profile_service.py app/apis/users/services/update_profile_service.py
+sudo cp new_parche_proyecto/levels/lvl_2/fix/update_profile_service.py app/apis/auth/services/update_profile_service.py
 ```
 
 #### 3️⃣ Verificar que la vulnerabilidad fue corregida
 ```bash
-python3 new_parche_proyecto/levels/lvl_2/script/exploit_lvl2.py
+python3 new_parche_proyecto/levels/lvl_2/script/exploit_level2_idor.py    
 ```
 
 #### 4️⃣ Revertir parche (opcional)
 ```bash
-sudo cp new_parche_proyecto/levels/lvl_2/unpatch/update_profile_service.py app/apis/users/services/update_profile_service.py
+sudo cp new_parche_proyecto/levels/lvl_2/unpatch/update_profile_service.py app/apis/auth/services/update_profile_service.py
 ```
 
 ---

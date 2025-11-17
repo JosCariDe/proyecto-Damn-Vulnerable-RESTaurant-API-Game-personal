@@ -13,7 +13,7 @@ source venv/bin/activate
 
 #### 1️⃣ Ejecutar exploit para ver la vulnerabilidad
 ```bash
-python3 new_parche_proyecto/levels/lvl_1/scripts/exploit_lvl1.py
+python3 new_parche_proyecto/levels/lvl_1/scripts/exploit_lvl_1.py
 ```
 
 #### 2️⃣ Aplicar parche de seguridad
@@ -23,7 +23,7 @@ sudo cp new_parche_proyecto/levels/lvl_1/fix/delete_menu_item_service.py app/api
 
 #### 3️⃣ Verificar que la vulnerabilidad fue corregida
 ```bash
-python3 new_parche_proyecto/levels/lvl_1/scripts/exploit_lvl1.py
+python3 new_parche_proyecto/levels/lvl_1/scripts/exploit_lvl_1.py
 ```
 
 #### 4️⃣ Revertir parche (opcional)
